@@ -7,7 +7,7 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OceanGuardianM", "OceanGuar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A2301A39-0FD6-464A-9D7E-29B46E8A42B9}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\..\LibreSprite\fish.gif = ..\..\..\..\LibreSprite\fish.gif
+		..\..\..\..\LibreSprite\bg.png = ..\..\..\..\LibreSprite\bg.png
 	EndProjectSection
 EndProject
 Global
