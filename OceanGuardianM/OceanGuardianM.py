@@ -66,7 +66,7 @@ class Rubbish:
         self.x = screen_width #start from right side of the screen
         self.y = random.randrange(0, screen_height - rubbish_height) #spawn randomly on y axis. min value of 0, max of screen_height-rubbish_height
         self.color = rubbish_colour
-        self.speed = random.uniform(3.5, 5) #speed of rubbish will range from 3 to 4.5
+        self.speed = random.uniform(3.5, 6.5) #speed of rubbish will range from 3 to 4.5
         
     def move(self):
         self.x -= self.speed
@@ -75,6 +75,10 @@ class Rubbish:
         pygame.draw.rect(screen, self.color, (self.x, self.y, rubbish_width, rubbish_height))
         
 rubbish_list = []
+
+#make timer
+spawn_rubbish_event = pygame.USEREVENT + 1
+pygame.time.set_timer(spawn_rubbish_event, 2000) #spawn rubbish every 2000 milliseconds (2 seconds)
 
 
 #keep display window on screen forever
@@ -105,9 +109,10 @@ while True:
                 player.up_pressed = False
             if event.key == pygame.K_DOWN:
                 player.down_pressed = False
-                
-        if len(rubbish_list) < 3:
-            rubbish_list.append(Rubbish())
+             
+        if event.type == spawn_rubbish_event:        
+            if len(rubbish_list) < 3: #limit rubbish on screen to 3
+                rubbish_list.append(Rubbish())
 
 
     #Draw
@@ -118,14 +123,14 @@ while True:
         rubbish.move()
         rubbish.draw()
         
-        rubbish_list = [rubbish for rubbish in rubbish_list if rubbish.x > -rubbish_width]
-    
     #update
     player.update()
     pygame.display.flip()
-    
+        
+    rubbish_list = [rubbish for rubbish in rubbish_list if rubbish.x > -rubbish_width]  #remove rubbish as soon as they move off screen
                 
-    
     pygame.display.update() #update elements to show on display window
     clock.tick(60) #limit while true loop to 60fps 
+    
+#test
 
